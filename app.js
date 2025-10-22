@@ -1,38 +1,49 @@
-function scheduleReminder() {
+async function scheduleReminder() {
   const email = document.getElementById("email").value;
   const subject = document.getElementById("subject").value;
   const message = document.getElementById("message").value;
-  const sendTime = document.getElementById("sendTime").value;
+  const time = document.getElementById("sendTime").value;
   const status = document.getElementById("status");
 
-  if (!email || !subject || !message || !sendTime) {
-    status.style.color = "red";
+  // Basic validation
+  if (!email || !subject || !message || !time) {
     status.textContent = "⚠️ Please fill out all fields.";
+    status.style.color = "orange";
     return;
   }
 
-  const reminder = { email, subject, message, sendTime };
-  localStorage.setItem(Date.now(), JSON.stringify(reminder));
+  status.textContent = "⏳ Scheduling reminder...";
+  status.style.color = "#ddd";
 
-  status.style.color = "lightgreen";
-  status.textContent = "✅ Reminder scheduled successfully!";
-}
-
-window.onload = function () {
-  const list = document.getElementById("reminderList");
-  if (!list) return;
-  const keys = Object.keys(localStorage);
-  list.innerHTML = "";
-
-  if (keys.length === 0) {
-    list.innerHTML = "<p>No reminders found.</p>";
-  } else {
-    keys.forEach((key) => {
-      const { email, subject, message, sendTime } = JSON.parse(localStorage.getItem(key));
-      const div = document.createElement("div");
-      div.className = "card";
-      div.innerHTML = `<h4>${subject}</h4><p><strong>Email:</strong> ${email}</p><p>${message}</p><p><strong>Time:</strong> ${sendTime}</p>`;
-      list.appendChild(div);
+  try {
+    // ✅ Replace this URL with your backend Render URL
+    const response = await fetch("https://email-reminder-system-7ory.onrender.com/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email,
+        subject,
+        message,
+        time,
+      }),
     });
+
+    const data = await response.json();
+
+    if (data.success) {
+      status.textContent = "✅ Reminder scheduled successfully!";
+      status.style.color = "lightgreen";
+      document.getElementById("email").value = "";
+      document.getElementById("subject").value = "";
+      document.getElementById("message").value = "";
+      document.getElementById("sendTime").value = "";
+    } else {
+      status.textContent = "⚠️ Failed to schedule reminder.";
+      status.style.color = "orange";
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    status.textContent = "❌ Unable to connect to server.";
+    status.style.color = "red";
   }
-};
+}
