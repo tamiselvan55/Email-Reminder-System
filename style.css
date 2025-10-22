@@ -1,1 +1,207 @@
 
+
+/* ===== General ===== */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #1b1f4b, #4b0082);
+  color: #fff;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* ===== Header ===== */
+header {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  flex: 1 1 100%; /* Take full width on small screens */
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.nav-btn {
+  background: #6c63ff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: 0.3s;
+  margin: 5px;
+  display: inline-block;
+}
+.nav-btn:hover {
+  background: #3f35b1;
+}
+
+/* ===== Hero Section ===== */
+.hero {
+  text-align: center;
+  margin-top: 10%;
+  padding: 0 20px;
+}
+.hero h2 {
+  font-size: 2rem;
+}
+.hero p {
+  font-size: 1.1rem;
+  color: #ddd;
+  max-width: 600px;
+  margin: 10px auto;
+}
+
+/* ===== Buttons ===== */
+.button-group {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.primary-btn,
+.secondary-btn {
+  padding: 12px 30px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+.primary-btn {
+  background-color: #6c63ff;
+  color: white;
+}
+.primary-btn:hover {
+  background-color: #5448d6;
+}
+.secondary-btn {
+  background-color: transparent;
+  border: 2px solid #6c63ff;
+  color: #6c63ff;
+}
+.secondary-btn:hover {
+  background-color: #6c63ff;
+  color: white;
+}
+
+/* ===== Features Section ===== */
+.features {
+  text-align: center;
+  margin-top: 100px;
+  padding: 0 20px;
+}
+.features h3 {
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+}
+.card-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.card {
+  background-color: #2e2860;
+  width: 250px;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: left;
+  transition: 0.3s;
+}
+.card:hover {
+  transform: translateY(-5px);
+  background-color: #3a2f73;
+}
+
+/* ===== Form Page ===== */
+.form-section {
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+}
+.form-card {
+  background-color: #2d2a5a;
+  padding: 30px;
+  border-radius: 20px;
+  width: 400px;
+}
+.form-card h2 {
+  text-align: center;
+}
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: none;
+}
+
+/* ===== Reminders List ===== */
+.reminders-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* ===== Mobile Responsive Fix ===== */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 20px;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .nav-btn {
+    width: 80%;
+    max-width: 250px;
+    font-size: 0.9rem;
+  }
+
+  .hero {
+    margin-top: 50px;
+  }
+
+  .hero h2 {
+    font-size: 1.5rem;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    width: 80%;
+    max-width: 250px;
+  }
+
+  .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+    text-align: center;
+  }
+
+  .form-card {
+    width: 90%;
+  }
+}
